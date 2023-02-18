@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 
 
-const styles = StyleSheet.create({
+const HomeScreenStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#222",
@@ -10,12 +10,13 @@ const styles = StyleSheet.create({
   headerContainer: {
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 20,
+    marginVertical: 0,
   },
   headerText: {
     fontSize: 28,
     fontWeight: "bold",
     color: "#fff",
+    fontFamily: "monospace",
   },
   carouselContainer: {
     alignItems: "center",
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
     height: 200,
     resizeMode: "cover",
     borderRadius: 5,
-    marginHorizontal: 5,
+    marginHorizontal: 2,
   },
   indicatorContainer: {
     flexDirection: "row",
@@ -62,18 +63,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
   }
-//   appointmentButton: {
-//     backgroundColor: "#4CAF50",
-//     padding: 10,
-//     borderRadius: 5,
-//     marginHorizontal: 50,
-//     marginVertical: 20,
-//     alignItems: "center",
-//   },
-//   buttonText: {
-//     color: "white",
-//     fontSize: 20,
-//   },
+
 });
 
-export default styles;
+export default HomeScreenStyles;

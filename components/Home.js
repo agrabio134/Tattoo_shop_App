@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Text,
   View,
@@ -44,10 +44,24 @@ const HomeScreen = () => {
   ];
 
   const { width } = Dimensions.get("window");
-  const ITEM_WIDTH = Math.round(width * 1);
-  const ITEM_HEIGHT = Math.round((ITEM_WIDTH * 4) / 7);
+  const ITEM_WIDTH = Math.round(width * 0.99);
+  const ITEM_HEIGHT = Math.round((ITEM_WIDTH * 7.5) / 7);
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const scrollViewRef = useRef(null);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const nextIndex = activeIndex === images.length - 1 ? 0 : activeIndex + 1;
+      setActiveIndex(nextIndex);
+      scrollViewRef.current.scrollTo({
+        x: nextIndex * width,
+        y: 0,
+        animated: true,
+      });
+    }, 5000);
+    return () => clearInterval(intervalId);
+  }, [activeIndex]);
 
   return (
     <SafeAreaView style={HomeScreenStyles.container}>
@@ -61,12 +75,13 @@ const HomeScreen = () => {
       </View>
       <View style={HomeScreenStyles.carouselContainer}>
         <ScrollView
+          ref={scrollViewRef}
           horizontal
           pagingEnabled
           showsHorizontalScrollIndicator={false}
           onMomentumScrollEnd={(event) => {
-            let x = event.nativeEvent.contentOffset.x;
-            let index = Math.round(x / Dimensions.get("window").width);
+            const x = event.nativeEvent.contentOffset.x;
+            const index = Math.round(x / Dimensions.get("window").width);
             setActiveIndex(index);
           }}
         >

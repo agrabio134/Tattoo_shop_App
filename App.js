@@ -16,7 +16,7 @@ const MyTheme = {
     background: '#000',
     text: '#fff',
     card: '#121212',
-    border: '#000',
+    border: '#fff',
   },
 };
 

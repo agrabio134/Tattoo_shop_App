@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button } from 'react-native';
 import { Calendar } from 'react-native-calendars';
+
+import AppointmentStyles from "./Styles/AppointmentStyles";
+
 
 
 const AppointmentScreen = ({  }) => {
@@ -19,10 +22,10 @@ const AppointmentScreen = ({  }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.heading}>Book an Appointment</Text>
+    <View style={AppointmentStyles.container}>
+      <Text style={AppointmentStyles.heading}>Book an Appointment</Text>
       <TextInput
-        style={styles.input}
+        style={AppointmentStyles.input}
         placeholder="Enter your name"
         value={name}
         onChangeText={setName}
@@ -31,7 +34,7 @@ const AppointmentScreen = ({  }) => {
       <Calendar
         markedDates={markedDates}
         onDayPress={handleDayPress}
-        style={styles.calendar}
+        style={AppointmentStyles.calendar}
         theme={{
           calendarBackground: '#222',
           textSectionTitleColor: '#fff',
@@ -67,40 +70,5 @@ const AppointmentScreen = ({  }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#222'
-  },
-  heading: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    color: '#fff'
-  },
-  input: {
-    width: '100%',
-    height: 40,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10,
-    color: '#fff'
-  },
-  calendar: {
-    marginBottom: 20,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    width: 350,
-    height: 370,
-  }
-  
-});
 
 export default AppointmentScreen;
