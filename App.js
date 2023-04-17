@@ -2,11 +2,15 @@ import * as React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./components/Home";
 import AboutScreen from "./components/About";
 import ProfileScreen from "./components/Profile";
 import AppointmentScreen from "./components/Appointment";
+import LoginScreen from "./components/LoginScreen";
+import CreateUserScreen from "./components/CreateUserScreen";
 
+// const AuthStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const MyTheme = {
@@ -20,8 +24,28 @@ const MyTheme = {
   },
 };
 
+
+// const AuthNavigator = () => {
+//   return (
+//     <AuthStack.Navigator>
+//       <AuthStack.Screen
+//         name="Login"
+//         component={LoginScreen}
+//         options={{ headerShown: false }}
+//       />
+//       <AuthStack.Screen
+//         name="Register"
+//         component={CreateUserScreen}
+//         options={{ headerShown: false }}
+//       />
+//     </AuthStack.Navigator>
+//   );
+// };
+
 const App = () => {
   return (
+    // before this, head to login 
+
     <NavigationContainer theme={MyTheme}>
       <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -68,7 +92,18 @@ const App = () => {
               size={size}
               color={color}
             />;
+            
             }
+            else if (route.name === "Register") {
+              return <Ionicons
+              name={
+                focused
+                  ? "ios-information-circle"
+                  : "ios-information-circle-outline"
+              }
+              size={size}
+              color={color}
+            />;}
           },
           tabBarInactiveTintColor: "gray",
           tabBarActiveTintColor: "tomato",
@@ -80,6 +115,9 @@ const App = () => {
           options={{ tabBarBadge: 3 }}
         />
         <Tab.Screen name="Appointment" component={AppointmentScreen} />
+        <Tab.Screen name="Register" component={CreateUserScreen} />
+
+        {/* <Tab.Screen name="Auth" component={AuthNavigator} /> */}
         <Tab.Screen name="About" component={AboutScreen} />
         <Tab.Screen name="Profile" component={ProfileScreen} />
       </Tab.Navigator>

@@ -17,9 +17,30 @@ const AppointmentScreen = ({  }) => {
   };
 
   const handleSubmit = () => {
-    alert(`Appointment booked for ${name} on ${selectedDate}`);
-    // TODO: Submit appointment data to server or perform other action
+    if (name && selectedDate) {
+      const data = new FormData();
+      data.append('name', name);
+      data.append('date', selectedDate);
+  
+      fetch('/api/bookAppointment', {
+        method: 'POST',
+        body: data,
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          if (result.success) {
+            alert(`Appointment booked for ${name} on ${selectedDate}`);
+          } else {
+            alert('An error occurred. Please try again.');
+          }
+        })
+        .catch((error) => {
+          alert('An error occurred. Please try again.');
+          console.error(error);
+        });
+    }
   };
+  
 
   return (
     <View style={AppointmentStyles.container}>
